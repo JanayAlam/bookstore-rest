@@ -1,0 +1,55 @@
+{
+  "name": "bookstore",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node dist/index.js",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  },
+  "keywords": [
+    "bookstore",
+    "bookstore-api"
+  ],
+  "author": "Md. Janay Alam <janayalam.work@gmail.com>",
+  "license": "ISC",
+  "description": "A RESTful API for managing a bookstore",
+  "engines": {
+    "node": "^20.12.2",
+    "npm": "use-yarn",
+    "yarn": ">= 1.17.x"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "dayjs": "^1.11.12",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.12.0",
+    "winston": "^3.13.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "7.16.0",
+    "@typescript-eslint/parser": "7.16.0",
+    "eslint": "9.6.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "nodemon": "^3.1.4",
+    "prettier": "3.3.2",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.5.4"
+  }
+}
