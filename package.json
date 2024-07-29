@@ -6,7 +6,8 @@
     "dev": "nodemon",
     "start": "node dist/index.js",
     "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "knex": "./node_modules/.bin/knex --knexfile src/database/knexFile.ts"
   },
   "keywords": [
     "bookstore",
