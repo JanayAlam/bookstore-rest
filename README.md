@@ -3,3 +3,7 @@
 A RESTful API for managing a bookstore.
 
 Create a database and put the database name in the `.env` file.
+
+To run migration `yarn knex migrate:latest`
+
+To seeding `yarn knex seed:run`

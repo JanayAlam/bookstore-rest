@@ -22,7 +22,11 @@ const knexConfigs: IKnexConfig = {
       max: 10,
     },
     migrations: {
+      directory: "./migrations",
       tableName: "knex_migrations",
+    },
+    seeds: {
+      directory: "./seeds",
     },
   },
   test: {
@@ -37,7 +41,11 @@ const knexConfigs: IKnexConfig = {
       max: 10,
     },
     migrations: {
+      directory: "./migrations",
       tableName: "knex_migrations",
+    },
+    seeds: {
+      directory: "./seeds",
     },
   },
   production: {
@@ -52,6 +60,7 @@ const knexConfigs: IKnexConfig = {
       max: 10,
     },
     migrations: {
+      directory: "./migrations",
       tableName: "knex_migrations",
     },
   },
