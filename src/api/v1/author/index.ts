@@ -1,9 +1,9 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
+
+import { getAll } from "./controller";
 
 const router = Router();
 
-router.get("/", (req: Request, res: Response) => {
-  return res.status(200).json([]);
-});
+router.get("/", getAll);
 
 export default router;
