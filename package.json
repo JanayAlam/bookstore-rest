@@ -6,7 +6,8 @@
     "dev": "nodemon",
     "start": "node dist/index.js",
     "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "knex": "./node_modules/.bin/knex --knexfile src/database/knexFile.ts"
   },
   "keywords": [
     "bookstore",
@@ -35,6 +36,7 @@
     "winston": "^3.13.1"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@types/bcrypt": "^5.0.2",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.21",

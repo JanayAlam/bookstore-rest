@@ -31,7 +31,8 @@
     ],
     "typeRoots": [
       "node_modules/@types",
-      "./src/types/*"
+      "./src/types/*",
+      "./src/@types/*"
     ],
     // "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
