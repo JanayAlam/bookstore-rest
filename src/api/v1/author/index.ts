@@ -1,9 +1,23 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
+
+import validate from "../../../middlewares/body-validator";
+import { validateParamsId } from "../../../middlewares/validate-params-id";
+import {
+  createSchema as authorCreateSchema,
+  updateSchema as authorUpdateSchema,
+} from "../../../validation-schemas/author-validation-schema";
+import { create, get, getAll, remove, update } from "./controller";
 
 const router = Router();
 
-router.get("/", (req: Request, res: Response) => {
-  return res.status(200).json([]);
-});
+router.post("/", validate(authorCreateSchema), create);
+
+router.get("/", getAll);
+
+router.get("/:id", validateParamsId, get);
+
+router.put("/:id", validateParamsId, validate(authorUpdateSchema), update);
+
+router.delete("/:id", validateParamsId, remove);
 
 export default router;

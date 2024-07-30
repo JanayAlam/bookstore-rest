@@ -1,4 +1,4 @@
-import { IBook } from "../../types/book-types";
+import { IBook } from "../types/book-types";
 import Model from "./Model";
 
 class Book extends Model {
