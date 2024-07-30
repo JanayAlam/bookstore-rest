@@ -6,6 +6,7 @@ import http from "http";
 
 import createAppFactory from "./app";
 import { config } from "./constants";
+import checkDatabaseConnection from "./database/check-database-connection";
 import { logger } from "./utils";
 
 const main = async (): Promise<void> => {
@@ -16,7 +17,9 @@ const main = async (): Promise<void> => {
   const server = http.createServer(app);
 
   try {
-    // TODO: connect to the database
+    // checking database connection status
+    await checkDatabaseConnection();
+    logger.info("Database connected");
 
     // listening the server
     await server.listen(config.port);
