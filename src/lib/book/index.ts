@@ -65,3 +65,7 @@ export const removeById = async (id: number): Promise<number | null> => {
   const book = await Book.removeById(id);
   return book ? book.id : null;
 };
+
+export const getByAuthorId = async (authorId: number): Promise<IBook[]> => {
+  return Book.findByAuthorId(authorId);
+};

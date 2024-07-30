@@ -2,6 +2,8 @@ import dayjs from "dayjs";
 import { constant } from "../../constants";
 import { Author } from "../../models";
 import { IAuthor } from "../../types/author-types";
+import { IBook } from "../../types/book-types";
+import { getByAuthorId as getBooksByAuthorId } from "../book";
 
 interface IPaginationParams {
   page?: number;
@@ -55,4 +57,8 @@ export const updateById = async (
 export const removeById = async (id: number): Promise<number | null> => {
   const author = await Author.removeById(id);
   return author ? author.id : null;
+};
+
+export const getAuthorBooksById = async (id: number): Promise<IBook[]> => {
+  return getBooksByAuthorId(id);
 };

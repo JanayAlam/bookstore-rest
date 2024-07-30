@@ -6,7 +6,14 @@ import {
   createSchema as bookCreateSchema,
   updateSchema as bookUpdateSchema,
 } from "../../../validation-schemas/book-validation-schema";
-import { create, get, getAll, remove, update } from "./controller";
+import {
+  create,
+  get,
+  getAll,
+  getAllBooksOfSpecificAuthor,
+  remove,
+  update,
+} from "./controller";
 
 const router = Router();
 
@@ -19,5 +26,7 @@ router.get("/:id", validateParamsId, get);
 router.put("/:id", validateParamsId, validate(bookUpdateSchema), update);
 
 router.delete("/:id", validateParamsId, remove);
+
+router.get("/author/:id", validateParamsId, getAllBooksOfSpecificAuthor);
 
 export default router;

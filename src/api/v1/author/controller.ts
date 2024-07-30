@@ -5,6 +5,7 @@ import { NotFoundError } from "../../../errors";
 import {
   create as createAuthor,
   getAll as getAllAuthors,
+  getAuthorBooksById,
   getById as getAuthorById,
   removeById as removeAuthorById,
   updateById as updateAuthorById,
@@ -116,6 +117,23 @@ export const remove = async (
     }
 
     return res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const getAllBooks = async (
+  req: Request<IParamsId, null, null, null>,
+  res: Response,
+  next: NextFunction,
+) => {
+  const { id } = req.params;
+  try {
+    const books = await getAuthorBooksById(id);
+
+    return res.status(200).json({
+      data: books,
+    });
   } catch (err) {
     next(err);
   }

@@ -6,6 +6,7 @@ import {
   create as createBook,
   getAll as getAllBooks,
   getById as getBookById,
+  getByAuthorId,
   removeById as removeBookById,
   updateById as updateBookById,
 } from "../../../lib/book";
@@ -128,6 +129,23 @@ export const remove = async (
     }
 
     return res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const getAllBooksOfSpecificAuthor = async (
+  req: Request<IParamsId, null, null, null>,
+  res: Response,
+  next: NextFunction,
+) => {
+  const { id } = req.params;
+  try {
+    const books = await getByAuthorId(id);
+
+    return res.status(200).json({
+      data: books,
+    });
   } catch (err) {
     next(err);
   }
