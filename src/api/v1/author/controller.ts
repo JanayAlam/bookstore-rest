@@ -1,10 +1,44 @@
 import { NextFunction, Request, Response } from "express";
 
+import dayjs from "dayjs";
 import { constant } from "../../../constants";
-import { getAll as getAllAuthors } from "../../../lib/author";
+import { NotFoundError } from "../../../errors";
+import {
+  create as createAuthor,
+  getAll as getAllAuthors,
+  getById as getAuthorById,
+  removeById as removeAuthorById,
+  updateById as updateAuthorById,
+} from "../../../lib/author";
+import {
+  ICreateAuthorRequestBody,
+  IUpdateAuthorRequestBody,
+} from "../../../types/author-types";
+import { IGetAllQueryParams, IParamsId } from "../../../types/common-types";
+
+export const create = async (
+  req: Request<null, null, ICreateAuthorRequestBody, null>,
+  res: Response,
+  next: NextFunction,
+) => {
+  const { name, birthdate, bio } = req.body;
+  try {
+    const dateOfBirth = dayjs(new Date(birthdate));
+
+    const authorId = await createAuthor(name, dateOfBirth, bio ?? null);
+
+    const author = await getAuthorById(authorId);
+
+    return res.status(201).json({
+      data: author,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
 
 export const getAll = async (
-  req: Request<null, null, null, { page?: number; limit?: number }>,
+  req: Request<null, null, null, IGetAllQueryParams>,
   res: Response,
   next: NextFunction,
 ) => {
@@ -15,13 +49,77 @@ export const getAll = async (
       limit,
     });
     return res.status(200).json({
-      items: authors,
+      data: authors,
       pagination: {
         total,
         page: !isNaN(Number(page)) ? Number(page) : constant.pagination.page,
         limit: limit ? Number(limit) : constant.pagination.limit,
       },
     });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const get = async (
+  req: Request<IParamsId, null, null, null>,
+  res: Response,
+  next: NextFunction,
+) => {
+  const { id } = req.params;
+  try {
+    const author = await getAuthorById(id);
+    if (!author) {
+      throw new NotFoundError("Author not found with the provided id");
+    }
+    return res.status(200).json({
+      data: author,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const update = async (
+  req: Request<IParamsId, null, IUpdateAuthorRequestBody, null>,
+  res: Response,
+  next: NextFunction,
+) => {
+  const { id } = req.params;
+  const { name, bio, birthdate } = req.body;
+  try {
+    const dateOfBirth = birthdate ? dayjs(new Date(birthdate)) : undefined;
+
+    const authorId = await updateAuthorById(id, { name, bio, dateOfBirth });
+
+    if (!authorId) {
+      throw new NotFoundError("Author not found with the provided id");
+    }
+
+    const author = await getAuthorById(authorId);
+
+    return res.status(200).json({
+      data: author,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const remove = async (
+  req: Request<IParamsId, null, null, null>,
+  res: Response,
+  next: NextFunction,
+) => {
+  const { id } = req.params;
+  try {
+    const authorId = await removeAuthorById(id);
+
+    if (!authorId) {
+      throw new NotFoundError("Author not found with the provided id");
+    }
+
+    return res.status(204).send();
   } catch (err) {
     next(err);
   }

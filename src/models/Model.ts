@@ -30,6 +30,27 @@ abstract class Model {
     const totalItems = await this.table.count("* as count").first();
     return [items, Number(totalItems?.count) || 0];
   }
+
+  static async updateById<T>(
+    id: number,
+    data: T,
+  ): Promise<{ id: number } | null> {
+    const updatedData = await this.table
+      .where({ id })
+      .first()
+      .update(data)
+      .returning("id");
+    return updatedData.length ? updatedData[0] : null;
+  }
+
+  static async removeById(id: number): Promise<{ id: number } | null> {
+    const deletedData = await this.table
+      .where({ id })
+      .first()
+      .del()
+      .returning("id");
+    return deletedData.length ? deletedData[0] : null;
+  }
 }
 
 export default Model;
