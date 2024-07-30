@@ -1,18 +1,8 @@
-import dayjs from "dayjs";
-import { Application, Request, Response, Router } from "express";
+import { Application, NextFunction, Request, Response } from "express";
 
-import { constant } from "../constants";
+import { NotFoundError } from "../errors";
 import globalErrorHandler from "../middlewares/global-error-handler";
-import { IErrorResponse } from "../types/error-types";
-
-import authorRouter from "../api/v1/author";
-
-const apiRoutes: { path: string; router: Router }[] = [
-  {
-    path: "authors",
-    router: authorRouter,
-  },
-];
+import apiRoutes from "./api-routes";
 
 /**
  * Config and add all the routes
@@ -31,13 +21,8 @@ const configRoutes = (app: Application): void => {
   });
 
   // not implemented endpoints
-  app.use("*", (_req: Request, res: Response): Response<IErrorResponse> => {
-    return res.status(404).json({
-      timestamp: dayjs(new Date()).format(constant.DATE_TIME_FORMAT_STRING),
-      error: "Not Found",
-      code: 404,
-      message: "Route does not exist",
-    });
+  app.use("*", (_req: Request, _res: Response, next: NextFunction) => {
+    return next(new NotFoundError("Route does not exist"));
   });
 
   // Set route not found and global error handler

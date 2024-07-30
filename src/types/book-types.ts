@@ -13,3 +13,17 @@ export interface IBook {
 export interface IBookWithAuthor extends Omit<IBook, "author_id"> {
   author: IAuthor;
 }
+
+export interface ICreateBookRequestBody {
+  title: string;
+  description?: string;
+  published_date: Date;
+  author_id: number;
+}
+
+export interface IUpdateBookRequestBody {
+  title?: string;
+  description?: string;
+  published_date?: Date;
+  author_id?: number;
+}

@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 
 import dayjs from "dayjs";
-import { constant } from "../../../constants";
 import { NotFoundError } from "../../../errors";
 import {
   create as createAuthor,
   getAll as getAllAuthors,
+  getAuthorBooksById,
   getById as getAuthorById,
   removeById as removeAuthorById,
   updateById as updateAuthorById,
@@ -15,6 +15,7 @@ import {
   IUpdateAuthorRequestBody,
 } from "../../../types/author-types";
 import { IGetAllQueryParams, IParamsId } from "../../../types/common-types";
+import generatePaginationResponseObject from "../../../utils/pagination-response-object";
 
 export const create = async (
   req: Request<null, null, ICreateAuthorRequestBody, null>,
@@ -50,11 +51,7 @@ export const getAll = async (
     });
     return res.status(200).json({
       data: authors,
-      pagination: {
-        total,
-        page: !isNaN(Number(page)) ? Number(page) : constant.pagination.page,
-        limit: limit ? Number(limit) : constant.pagination.limit,
-      },
+      pagination: generatePaginationResponseObject(total, page, limit),
     });
   } catch (err) {
     next(err);
@@ -120,6 +117,23 @@ export const remove = async (
     }
 
     return res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const getAllBooks = async (
+  req: Request<IParamsId, null, null, null>,
+  res: Response,
+  next: NextFunction,
+) => {
+  const { id } = req.params;
+  try {
+    const books = await getAuthorBooksById(id);
+
+    return res.status(200).json({
+      data: books,
+    });
   } catch (err) {
     next(err);
   }
