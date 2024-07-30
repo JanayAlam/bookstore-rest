@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
 import dayjs from "dayjs";
-import { constant } from "../../../constants";
 import { NotFoundError } from "../../../errors";
 import {
   create as createAuthor,
@@ -15,6 +14,7 @@ import {
   IUpdateAuthorRequestBody,
 } from "../../../types/author-types";
 import { IGetAllQueryParams, IParamsId } from "../../../types/common-types";
+import generatePaginationResponseObject from "../../../utils/pagination-response-object";
 
 export const create = async (
   req: Request<null, null, ICreateAuthorRequestBody, null>,
@@ -50,11 +50,7 @@ export const getAll = async (
     });
     return res.status(200).json({
       data: authors,
-      pagination: {
-        total,
-        page: !isNaN(Number(page)) ? Number(page) : constant.pagination.page,
-        limit: limit ? Number(limit) : constant.pagination.limit,
-      },
+      pagination: generatePaginationResponseObject(total, page, limit),
     });
   } catch (err) {
     next(err);
