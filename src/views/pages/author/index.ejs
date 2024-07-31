@@ -19,7 +19,7 @@
           <td><%= author.name %></td>
           <td><%= books[author.id].map(book => book.title).join(", ") %></td>
           <td>
-            <a href="<%= `/authors/${author.id}` %>" class="btn btn-primary btn-sm">View</a>
+            <a href="<%= `/${author.id}` %>" class="btn btn-primary btn-sm">View</a>
           </td>
         </tr>
       <% }) %>

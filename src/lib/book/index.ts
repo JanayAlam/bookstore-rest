@@ -33,7 +33,7 @@ export const getAll = async ({
   return Book.findAll<IBook>(offset, limit);
 };
 
-export const getById = async (id: number) => {
+export const getById = async (id: number): Promise<IBook | null> => {
   return Book.findById(id);
 };
 

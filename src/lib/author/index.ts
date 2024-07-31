@@ -29,7 +29,7 @@ export const getAll = async ({
   return Author.findAll<IAuthor>(offset, limit);
 };
 
-export const getById = async (id: number) => {
+export const getById = async (id: number): Promise<IAuthor | null> => {
   return Author.findById(id);
 };
 
