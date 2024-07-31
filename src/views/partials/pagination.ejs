@@ -1,0 +1,15 @@
+<ul class="pagination">
+  <li class="page-item">
+    <a class="page-link" href="<%= `/?page=${pagination.prev}&limit=${pagination.limit}` %>" aria-label="Previous">
+      <span aria-hidden="true">&laquo;</span>
+    </a>
+  </li>
+  <% for (let i=1; i<=pagination.total_pages; i++) { %>
+    <li class="page-item"><a class="page-link" href="<%= `/?page=${i}&limit=${pagination.limit}` %>"><%= i %></a></li>
+  <% } %>
+  <li class="page-item">
+    <a class="page-link" href="<%= `/?page=${pagination.next}&limit=${pagination.limit}` %>" aria-label="Next">
+      <span aria-hidden="true">&raquo;</span>
+    </a>
+  </li>
+</ul>

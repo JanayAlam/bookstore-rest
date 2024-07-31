@@ -13,6 +13,8 @@ const knexConfigs: IKnexConfig = {
   development: {
     client: "postgresql",
     connection: {
+      host: config.dbHost,
+      port: config.dbPort,
       database: config.dbName,
       user: config.dbUsername,
       password: config.dbPassword,

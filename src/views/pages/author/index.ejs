@@ -1,7 +1,32 @@
 <%- include('../../partials/head') %> <%- include('../../partials/navbar') %>
 
 <main class="container mt-2">
-  <div>hello</div>
+  <h1 class="h1 mb-3">Authors</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID#</th>
+        <th scope="col">Author name</th>
+        <th scope="col">Books</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% authors.forEach((author)=> { %>
+        <tr>
+          <th scope="row"%>"><%= author.id %></th>
+          <td><%= author.name %></td>
+          <td><%= books[author.id].map(book => book.title).join(", ") %></td>
+          <td>
+            <a href="<%= `/authors/${author.id}` %>" class="btn btn-primary btn-sm">View</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <%- include('../../partials/pagination') %>
 </main>
 
 <%- include('../../partials/footer') %>
