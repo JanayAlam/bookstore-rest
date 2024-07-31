@@ -18,6 +18,7 @@ A RESTful API for managing a bookstore. A few views has been implemented to show
 ## Tech Stack
 
 **Server:** Node, Express
+
 **Database:** PostgreSQL, Knex Query Builder
 
 ## Installation and Database Migration
@@ -90,12 +91,12 @@ See `package.json` file for other commands.
 
 ## Endpoints Description
 
-- POST /api/v1/auth/register -> Register a new user into the system
-- POST /api/v1/auth/login -> Logged in a user into the system
-- CRUD /api/v1/authors -> CRUD operations/APIs for author resource
-- GET /api/v1/authors/:id/books -> Get all books of an author
-- CRUD /api/v1/books -> CRUD operations/APIs for book resource
-- GET /api/v1/books/author/:id -> Get all books by an author id
+- POST `/api/v1/auth/register` -> Register a new user into the system
+- POST `/api/v1/auth/login` -> Logged in a user into the system
+- CRUD `/api/v1/authors` -> CRUD operations/APIs for author resource
+- GET `/api/v1/authors/:id/books` -> Get all books of an author
+- CRUD `/api/v1/books` -> CRUD operations/APIs for book resource
+- GET `/api/v1/books/author/:id` -> Get all books by an author id
 
 | To create books and author a user must be authenticated.
 
