@@ -6,6 +6,7 @@ interface IConfig {
   dbName: string;
   dbUsername: string;
   dbPassword: string;
+  jwtSecret: string;
 }
 
 const config: IConfig = {
@@ -21,6 +22,7 @@ const config: IConfig = {
   dbName: process.env.DB_NAME || "bookstore_db",
   dbUsername: process.env.DB_USERNAME || "postgres",
   dbPassword: process.env.DB_PASSWORD || "root",
+  jwtSecret: process.env.JWT_SECRET || "iamsuperman",
 };
 
 export default config;
