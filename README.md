@@ -87,3 +87,11 @@ yarn start
 ```
 
 See `package.json` file for other commands.
+
+## Screenshots
+
+![Homepage](assets/s1.png "Authors list")
+
+![Author details](assets/s2.png "Author details page")
+
+![Book details](assets/s3.png "Book details page")
