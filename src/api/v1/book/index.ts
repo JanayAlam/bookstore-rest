@@ -1,5 +1,6 @@
 import { Router } from "express";
 
+import authenticate from "../../../middlewares/authenticate";
 import validate from "../../../middlewares/body-validator";
 import { validateParamsId } from "../../../middlewares/validate-params-id";
 import {
@@ -17,7 +18,7 @@ import {
 
 const router = Router();
 
-router.post("/", validate(bookCreateSchema), create);
+router.post("/", validate(bookCreateSchema), authenticate, create);
 
 router.get("/", getAll);
 

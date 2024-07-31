@@ -9,6 +9,7 @@ A RESTful API for managing a bookstore. A few views has been implemented to show
 - Additional queries endpoints like `books of a specific author`
 - `Pagination` in get all endpoints (get all books and authors)
 - Proper **error handling** with object oriented programming
+- **Consistent formatted response** object with correct http status code (both for error response and data response)
 - Applied **DRY** method while developing
 - Developed a proper well **structured codebase**
 - Developed **classes** for interacting with the database like **repositories** in other frameworks (like spring boot)
@@ -65,6 +66,7 @@ To run this project, you will need to add the following environment variables to
 |DB_NAME|Database name|
 |DB_USERNAME|Database username|
 |DB_PASSWORD|Database password|
+|JWT_SECRET|JWT secret key|
 
 ## Run the project
 

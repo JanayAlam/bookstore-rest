@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
 import { BadRequestError } from "../errors";
@@ -7,7 +5,7 @@ import { IBadRequestData } from "../types/error-types";
 
 const validate = (schema: Joi.ObjectSchema) => {
   return async (
-    req: Request<any, any, any, any>,
+    req: Request<unknown, unknown, unknown, unknown>,
     _res: Response,
     next: NextFunction,
   ) => {
