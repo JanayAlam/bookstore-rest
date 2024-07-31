@@ -1,0 +1,18 @@
+<%- include('../../partials/head') %> <%- include('../../partials/navbar') %>
+
+<main class="container mt-2">
+  <h1 class="h1"><%= book.title %></h1>
+  <p class="subtitle my-2">
+    <b>Date of publish:</b> <%= book.published_date %>
+  </p>
+  <p class="paragraph my-2"><b>Description:</b> <%= book.description %></p>
+
+  <h4 class="h4 mt-4 mb-2">Author</h4>
+  <div class="card card-body">
+    <p class="title my-2"><b>Author:</b> <%= author.name %></p>
+    <p class="title my-2"><b>Author's Birthdate:</b> <%= author.birthdate %></p>
+    <p class="title my-2"><b>Author's bio:</b> <%= author.bio %></p>
+  </div>
+</main>
+
+<%- include('../../partials/footer') %>

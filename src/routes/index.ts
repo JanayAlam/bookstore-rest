@@ -2,6 +2,7 @@ import { Application, NextFunction, Request, Response } from "express";
 
 import { NotFoundError } from "../errors";
 import globalErrorHandler from "../middlewares/global-error-handler";
+import webRouter from "../web/routes";
 import apiRoutes from "./api-routes";
 
 /**
@@ -10,6 +11,9 @@ import apiRoutes from "./api-routes";
  * @returns undefined
  */
 const configRoutes = (app: Application): void => {
+  // adding web routes
+  app.use(webRouter);
+
   // api health endpoint
   app.get("/api/v1/health", (_req: Request, res: Response) => {
     return res.status(200).send("OK");

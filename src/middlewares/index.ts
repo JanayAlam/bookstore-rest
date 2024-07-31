@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import express, { Application, json } from "express";
 import morgan from "morgan";
 
+import path from "path";
 import { config } from "../constants";
 import { logger } from "../utils";
 
@@ -17,6 +18,9 @@ const configMiddlewares = (app: Application): void => {
   app.use(express.static("public"));
 
   app.set("view engine", "ejs");
+
+  // set the views directory
+  app.set("views", path.join(__dirname, "../views"));
 
   // configure morgan
   app.use(

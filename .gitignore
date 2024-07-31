@@ -1,6 +1,7 @@
 .vscode
 node_modules/
+dist/
 
-.dist/
+tsconfig.tsbuildinfo
 
 .env
