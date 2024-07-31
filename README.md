@@ -1,5 +1,7 @@
 # Bookstore RESTful API
 
+[Postman JSON file](https://drive.google.com/file/d/1bzi2SlKb1dmrZi-dl9w2ATVe47mXs5K3/view?usp=sharing)
+
 A RESTful API for managing a bookstore. A few views has been implemented to show the data like- list of authors, detailed view of an author and books etc.
 
 ### Features
